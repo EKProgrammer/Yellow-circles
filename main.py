@@ -1,15 +1,15 @@
 import sys
 from random import randint
 from PyQt5.QtCore import QPoint
-from PyQt5 import uic
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
+from UI import Ui_MainWindow
 
 
-class Gui(QMainWindow):
+class Gui(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        uic.loadUi('UI.ui', self)
+        self.setupUi(self)
         self.initUI()
 
     def initUI(self):
@@ -28,7 +28,7 @@ class Gui(QMainWindow):
             qp.end()
 
     def draw_figure(self, qp):
-        qp.setBrush(QColor(255, 255, 0))
+        qp.setBrush(QColor(randint(0, 255), randint(0, 255), randint(0, 255)))
         a = randint(10, 50)
         qp.drawEllipse(QPoint(randint(50, 300), randint(85, 300)), a, a)
         self.do_paint = False
